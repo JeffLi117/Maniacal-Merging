@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort Stuff</title>
+</head>
+<body>
+    <script>
+
+        function mergeSort(array) {
+
+
+            //with -1 on the array stuff
+            function mergeAlgo(A, B, m, n) { //m = A.length, n = B.length
+                let i = j = 1;
+                let C = []; //empty array
+                console.log("Array A is: " + A);
+                console.log("Array B is: " + B);
+                while (i <= m && j <= n) {
+                    console.log("another WHILE Loop going on");
+                    if (A[i-1] < B[j-1]) {
+                        console.log("the IF fired here");
+                        console.log("A[i-1] is: " + A[i-1]);
+                        console.log("B[j-1] is: " + B[j-1]);
+
+                        C.push(A[i-1]);
+                        i++;
+                        //C[k++] = A[i++];
+                    } else {
+                        console.log("the ELSE fired here");
+                        console.log("A[i-1] is: " + A[i-1]);
+                        console.log("B[j-1] is: " + B[j-1]);
+                        
+                        C.push(B[j-1]);
+                        j++;
+                        //C[k++] = B[j++];
+                    }
+                }
+                console.log("m is: " + m);
+                console.log("n is: " + n);
+                console.log("i is: " + i);
+                console.log("j is: " + j);
+                let x = i;
+                let y = j;
+                for (; i <= m; i++) {
+                    console.log("an extra push happened for array A");
+                    C.push(A[i-1]);
+                    //C[k++] = A[i]; 
+                };
+                for (; j <= n; j++) {
+                    console.log("an extra push happened for array B");
+                    C.push(B[j-1]);
+                    //C[k++] = B[j]; 
+                };
+                /* for (;i < m; i++) {
+                    C.push(A[i]);
+                    //C[k++] = A[i]; 
+                };
+                for (;j < n; n++) {
+                    C.push(B[j]);
+                    //C[k++] = B[j]; 
+                }; */
+                console.log("C is: " + C);
+                return C;
+            }
+
+            /* function mergeAlgo(A, B, m, n) { //m = A.length, n = B.length
+                let i = j = 1;
+                let C = []; //empty array
+                while (i <= m && j <= n) {
+                    console.log("another WHILE Loop going on");
+                    if (A[i] < B[j]) {
+                        console.log("the IF fired here");
+                        console.log("A[i] is: " + A[i]);
+                        console.log("B[j] is: " + B[j]);
+
+                        C.push(A[i++]);
+                        //C[k++] = A[i++];
+                    } else {
+                        console.log("the ELSE fired here");
+                        console.log("A[i] is: " + A[i]);
+                        console.log("B[j] is: " + B[j]);
+                        
+                        C.push(B[j++]);
+                        //C[k++] = B[j++];
+                    }
+                }
+                console.log("m is: " + m);
+                console.log("n is: " + n);
+                console.log("i is: " + i);
+                console.log("j is: " + j);
+                let x = i;
+                let y = j;
+                for (let i; i <= m; i++) {
+                    console.log("an extra push happened for array A");
+                    C.push(A[i]);
+                    //C[k++] = A[i]; 
+                };
+                for (let j; j <= n; j++) {
+                    console.log("an extra push happened for array B");
+                    C.push(B[j]);
+                    //C[k++] = B[j]; 
+                };
+                for (;i < m; i++) {
+                    C.push(A[i]);
+                    //C[k++] = A[i]; 
+                };
+                for (;j < n; n++) {
+                    C.push(B[j]);
+                    //C[k++] = B[j]; 
+                }; 
+                console.log("C is: " + C);
+                return C;
+            } */
+
+            if (array.length === 1) {
+                return array[0];
+            } else {
+                console.log("starting another iteration");
+                let length = array.length; //ex: 5 [0,1,2,3,4]
+                let start = mid1 = 0;
+                let halfway = length/2; //5 div 2 == 2.5
+                //console.log("halfway is: " + halfway);
+                if (!Number.isInteger(halfway)) {
+                    mid1 = Math.floor(halfway); //2
+                } else {
+                    mid1 = halfway;
+                }
+                let end = length; //5
+                //console.log("end is: " + end);
+                let firstHalf = array.slice(start, mid1);
+                let secondHalf = array.slice(mid1, end);
+                console.log("firstHalf: " + firstHalf);
+                console.log("secondHalf: " + secondHalf);
+                //splits original array in halves, UNSORTED
+
+                //mergeAlgo needs arrays to be either single numbers or SORTED to work
+                //mergeAlgo takes 2 arrays and merges them together in SORTED form
+                let holderArray = mergeAlgo(firstHalf, secondHalf, firstHalf.length, secondHalf.length);
+
+                //the 2 mergeSort's below will "split" and cause another iteration until the length of each array is 1
+                mergeSort(firstHalf);
+                mergeSort(secondHalf);
+
+                /* if (firstHalf.length !== 1) {
+                    mergeSort(firstHalf);
+                } 
+
+                if (secondHalf.length !== 1) {
+                    mergeSort(secondHalf);
+                }
+
+                if (firstHalf.length === 1 && secondHalf.length === 1) {
+                    let firstVal = firstHalf[0];
+                    let secondVal = secondHalf[0];
+                    if (firstVal < secondVal) {
+                        holderArray.push(firstVal);
+                        holderArray.push(secondVal);
+                    } else if (secondVal < firstVal) {
+                        holderArray.push(secondVal);
+                        holderArray.push(firstVal);
+                    } else { //when both are the same
+                        holderArray.push(secondVal);
+                        holderArray.push(firstVal);
+                    };
+                    console.log("holderArray is: " + holderArray);
+                    return holderArray;
+                } */
+            }
+        }
+
+//CURRENTLY
+//will take array, divvy it into halves (or as equal as possible)
+//will iterate through said halves to create more pieces
+//until the pieces are single
+//once there are TWO single pieces, it will compare both
+//place into array from low to high
+//where does the single element go??
+const testArray = [3,1,6,5] //,2,9,8,7
+mergeSort(testArray);
+    </script>
+</body>
+</html>
