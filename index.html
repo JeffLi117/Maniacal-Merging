@@ -14,26 +14,26 @@
 
             //with -1 on the array stuff
             function mergeAlgo(A, B, m, n) { //m = A.length, n = B.length
-                let i = j = 1;
+                let i = j = 0;
                 let C = []; //empty array
                 console.log("Array A is: " + A);
                 console.log("Array B is: " + B);
-                while (i <= m && j <= n) {
+                while (i < m && j < n) {
                     console.log("another WHILE Loop going on");
-                    if (A[i-1] < B[j-1]) {
+                    if (A[i] < B[j]) {
                         console.log("the IF fired here");
-                        console.log("A[i-1] is: " + A[i-1]);
-                        console.log("B[j-1] is: " + B[j-1]);
+                        console.log("A[i] is: " + A[i]);
+                        console.log("B[j] is: " + B[j]);
 
-                        C.push(A[i-1]);
+                        C.push(A[i]);
                         i++;
                         //C[k++] = A[i++];
                     } else {
                         console.log("the ELSE fired here");
-                        console.log("A[i-1] is: " + A[i-1]);
-                        console.log("B[j-1] is: " + B[j-1]);
+                        console.log("A[i] is: " + A[i]);
+                        console.log("B[j] is: " + B[j]);
                         
-                        C.push(B[j-1]);
+                        C.push(B[j]);
                         j++;
                         //C[k++] = B[j++];
                     }
@@ -42,16 +42,15 @@
                 console.log("n is: " + n);
                 console.log("i is: " + i);
                 console.log("j is: " + j);
-                let x = i;
-                let y = j;
-                for (; i <= m; i++) {
+                
+                for (; i < m; i++) {
                     console.log("an extra push happened for array A");
-                    C.push(A[i-1]);
+                    C.push(A[i]);
                     //C[k++] = A[i]; 
                 };
-                for (; j <= n; j++) {
+                for (; j < n; j++) {
                     console.log("an extra push happened for array B");
-                    C.push(B[j-1]);
+                    C.push(B[j]);
                     //C[k++] = B[j]; 
                 };
                 /* for (;i < m; i++) {
@@ -159,15 +158,10 @@
             }
         }
 
-//CURRENTLY
-//will take array, divvy it into halves (or as equal as possible)
-//will iterate through said halves to create more pieces
-//until the pieces are single
-//once there are TWO single pieces, it will compare both
-//place into array from low to high
-//where does the single element go??
-const testArray = [3,1,2,9] //,8,7,6,5
-mergeSort(testArray);
+
+    const testArray = [3,1,2,9,33,13,5] 
+    mergeSort(testArray);
+    console.log(testArray);
     </script>
 </body>
 </html>
