@@ -143,47 +143,19 @@
                 console.log("firstHalf: " + firstHalf);
                 console.log("secondHalf: " + secondHalf);
                 //splits original array in halves, UNSORTED
-                //mergeAlgo will SORT array once it is down to length of 1
-                //assume I will get a SORTED array
 
                 // #2 
+                // sort each array
+                let sortedFirstHalf = mergeSort(firstHalf);
+                let sortedSecondHalf = mergeSort(secondHalf);
 
-                let holderArray = mergeAlgo(firstHalf, secondHalf, firstHalf.length, secondHalf.length);
+                // #3
+                // Two sorted, now merge
+
+                let holderArray = mergeAlgo(sortedFirstHalf, sortedSecondHalf, sortedFirstHalf.length, sortedSecondHalf.length);
                 //return mergeSort();//doing this will cause SOF - array length will NOT change and base case won't be reached
 
-                //the 2 mergeSort's below will "split" and cause another iteration until the length of each array is 1
-                //mergeSort(firstHalf);
-                //mergeSort(secondHalf);
-
-                //mergeAlgo needs arrays to be either single numbers or SORTED to work
-                //mergeAlgo takes 2 arrays and merges them together in SORTED form
-                console.log(holderArray);
-                
-
-                /* if (firstHalf.length !== 1) {
-                    mergeSort(firstHalf);
-                } 
-
-                if (secondHalf.length !== 1) {
-                    mergeSort(secondHalf);
-                }
-
-                if (firstHalf.length === 1 && secondHalf.length === 1) {
-                    let firstVal = firstHalf[0];
-                    let secondVal = secondHalf[0];
-                    if (firstVal < secondVal) {
-                        holderArray.push(firstVal);
-                        holderArray.push(secondVal);
-                    } else if (secondVal < firstVal) {
-                        holderArray.push(secondVal);
-                        holderArray.push(firstVal);
-                    } else { //when both are the same
-                        holderArray.push(secondVal);
-                        holderArray.push(firstVal);
-                    };
-                    console.log("holderArray is: " + holderArray);
-                    return holderArray;
-                } */
+                return holderArray;
             }
         }
 
