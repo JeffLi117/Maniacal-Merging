@@ -116,15 +116,22 @@
             } */
 
             if (array.length === 1) {
-                return array[0];
+                return array;
             } else {
+
+                //this whole part needs to
+                // #1 separate an array into halves
+                // #2 
+                // #3 weave them together
+
+                // #1
                 console.log("starting another iteration");
                 let length = array.length; //ex: 5 [0,1,2,3,4]
                 let start = mid1 = 0;
                 let halfway = length/2; //5 div 2 == 2.5
                 //console.log("halfway is: " + halfway);
                 if (!Number.isInteger(halfway)) {
-                    mid1 = Math.floor(halfway); //2
+                    mid1 = Math.floor(halfway); //2; round down to split odd numbered arrays
                 } else {
                     mid1 = halfway;
                 }
@@ -132,17 +139,26 @@
                 //console.log("end is: " + end);
                 let firstHalf = array.slice(start, mid1);
                 let secondHalf = array.slice(mid1, end);
+                
                 console.log("firstHalf: " + firstHalf);
                 console.log("secondHalf: " + secondHalf);
                 //splits original array in halves, UNSORTED
+                //mergeAlgo will SORT array once it is down to length of 1
+                //assume I will get a SORTED array
+
+                // #2 
+
+                let holderArray = mergeAlgo(firstHalf, secondHalf, firstHalf.length, secondHalf.length);
+                //return mergeSort();//doing this will cause SOF - array length will NOT change and base case won't be reached
+
+                //the 2 mergeSort's below will "split" and cause another iteration until the length of each array is 1
+                //mergeSort(firstHalf);
+                //mergeSort(secondHalf);
 
                 //mergeAlgo needs arrays to be either single numbers or SORTED to work
                 //mergeAlgo takes 2 arrays and merges them together in SORTED form
-                let holderArray = mergeAlgo(firstHalf, secondHalf, firstHalf.length, secondHalf.length);
-
-                //the 2 mergeSort's below will "split" and cause another iteration until the length of each array is 1
-                mergeSort(firstHalf);
-                mergeSort(secondHalf);
+                console.log(holderArray);
+                
 
                 /* if (firstHalf.length !== 1) {
                     mergeSort(firstHalf);
@@ -178,7 +194,7 @@
 //once there are TWO single pieces, it will compare both
 //place into array from low to high
 //where does the single element go??
-const testArray = [3,1,6,5] //,2,9,8,7
+const testArray = [3,1,2,9] //,8,7,6,5
 mergeSort(testArray);
     </script>
 </body>
